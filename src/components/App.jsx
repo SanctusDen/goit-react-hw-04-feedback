@@ -10,18 +10,19 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  // const [options, setOptions] = useState({Good:0, Neutral:0, Bad:0});
-  const [options, setOptions] = useState(setGood, setNeutral, setBad);
+  const [btn, setBtn] = useState({good:0, neutral:0, bad:0});
+  // const [options, setOptions] = useState({good:0, neutral:0, bad:0});
+  const options = [good, neutral, bad];
   const handleFeedback = e => {
-    const value = e.target.value;
-    setOptions(prevState => ({
+    const value = e.currentTarget.value;
+    setBtn(prevState => ({
       ...prevState,
       [value]: prevState[value] + 1
     }));
   };
 
-  const countPositiveFeedback = () => {
-    return Math.round((setGood / TotalFeedback()) * 100);
+  const countPositiveFeedback = (good,TotalFeedback) => {
+    return Math.round((good / TotalFeedback()) * 100);
   };
 
   const TotalFeedback = () => {
