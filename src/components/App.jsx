@@ -10,13 +10,12 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const [btn, setBtn] = useState({good:0, neutral:0, bad:0});
   // const [options, setOptions] = useState({good:0, neutral:0, bad:0});
-  const options = [good, neutral, bad];
+  const options = [ 'good', 'neutral', 'bad' ];
   
   const handleFeedback = e => {
     const value = e.currentTarget.value;
-    setBtn(prevState => ({
+    TotalFeedback(prevState => ({
       ...prevState,
       [value]: prevState[value] + 1
     }));
@@ -26,12 +25,15 @@ export const App = () => {
     return Math.round((good / TotalFeedback()) * 100);
   };
 
-  const TotalFeedback = () => {
-    // const { good, neutral, bad } = this.state;
-    // const total = good + neutral + bad;
-    const total = setGood + setNeutral + setBad;
-    return total;
-  };
+  // const TotalFeedback = () => {
+  //   // const { good, neutral, bad } = this.state;
+  //   // const total = good + neutral + bad;
+  //   const total = setGood + setNeutral + setBad;
+  //   return total;
+  // };
+
+  const TotalFeedback = (good, neutral, bad) =>
+    [good, neutral, bad].reduce((acc, e) => acc + e);
   
   // const { good, neutral, bad } = this.state;
   // const onFeedbackOptions = Object.keys(setGood,setNeutral,setBad);
@@ -43,14 +45,13 @@ export const App = () => {
         <FeedbackOptions
           options={options}
           handleFeedback={handleFeedback}
-          btn={btn}
         />
         {TotalFeedback() > 0 ? (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
-            total={TotalFeedback}
+            TotalFeedback={TotalFeedback}
             countPositiveFeedback={countPositiveFeedback}
           />
         ) : (
