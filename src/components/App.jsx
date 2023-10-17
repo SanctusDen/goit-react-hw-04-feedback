@@ -13,6 +13,7 @@ export const App = () => {
   const [btn, setBtn] = useState({good:0, neutral:0, bad:0});
   // const [options, setOptions] = useState({good:0, neutral:0, bad:0});
   const options = [good, neutral, bad];
+  
   const handleFeedback = e => {
     const value = e.currentTarget.value;
     setBtn(prevState => ({
@@ -42,8 +43,9 @@ export const App = () => {
         <FeedbackOptions
           options={options}
           handleFeedback={handleFeedback}
+          btn={btn}
         />
-        {TotalFeedback > 0 ? (
+        {TotalFeedback() > 0 ? (
           <Statistics
             good={good}
             neutral={neutral}
