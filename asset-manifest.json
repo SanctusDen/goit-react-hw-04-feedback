@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/SanctusDen.github.io/goit-react-hw-04-feedback/static/css/main.7acaea2f.css",
-    "main.js": "/SanctusDen.github.io/goit-react-hw-04-feedback/static/js/main.a21c8b05.js",
+    "main.js": "/SanctusDen.github.io/goit-react-hw-04-feedback/static/js/main.c1eb7647.js",
     "index.html": "/SanctusDen.github.io/goit-react-hw-04-feedback/index.html",
     "main.7acaea2f.css.map": "/SanctusDen.github.io/goit-react-hw-04-feedback/static/css/main.7acaea2f.css.map",
-    "main.a21c8b05.js.map": "/SanctusDen.github.io/goit-react-hw-04-feedback/static/js/main.a21c8b05.js.map"
+    "main.c1eb7647.js.map": "/SanctusDen.github.io/goit-react-hw-04-feedback/static/js/main.c1eb7647.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.a21c8b05.js"
+    "static/js/main.c1eb7647.js"
   ]
 }
