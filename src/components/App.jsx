@@ -1,58 +1,48 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { FeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
-import {Section} from './Section/Section'
-import { Notification } from "components/Notification/Notification";
-import  {Statistics} from "components/Statistacs/Statistics";
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Section } from './Section/Section';
+import { Notification } from 'components/Notification/Notification';
+import { Statistics } from 'components/Statistacs/Statistics';
 
 export const App = () => {
-  const [good, setGood] = useState(0);
-  const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
+  const [options, setOptions] = useState({ good: 0, neutral: 0, bad: 0 });
 
-  // const [options, setOptions] = useState({good:0, neutral:0, bad:0});
-  const options = [ 'good', 'neutral', 'bad' ];
-  
-  const handleFeedback = e => {
-    const value = e.currentTarget.value;
-    TotalFeedback(prevState => ({
+  const handleFeedback = option => {
+    setOptions(prevState => ({
       ...prevState,
-      [value]: prevState[value] + 1
+      [option]: prevState[option] + 1,
     }));
   };
 
-  const countPositiveFeedback = (good,TotalFeedback) => {
-    return Math.round((good / TotalFeedback()) * 100);
+  const countPositiveFeedback = (good, totalFeedback) => {
+    return Math.round((good / totalFeedback) * 100);
   };
 
-  // const TotalFeedback = () => {
-  //   // const { good, neutral, bad } = this.state;
-  //   // const total = good + neutral + bad;
-  //   const total = setGood + setNeutral + setBad;
-  //   return total;
-  // };
+  const optionsData = Object.keys(options);
 
-  const TotalFeedback = (good, neutral, bad) =>
-    [good, neutral, bad].reduce((acc, e) => acc + e);
-  
-  // const { good, neutral, bad } = this.state;
-  // const onFeedbackOptions = Object.keys(setGood,setNeutral,setBad);
-  // const countTotal = TotalFeedback();
+  const totalFeedback = () => {
+    return optionsData.reduce((acc, e) => {
+      return options[e] + acc;
+    }, 0);
+  };
 
+  const total = totalFeedback();
+  const positive = countPositiveFeedback(options.good, total);
   return (
     <>
       <Section title="Please leave your feedback here">
         <FeedbackOptions
-          options={options}
+          options={optionsData}
           handleFeedback={handleFeedback}
         />
-        {TotalFeedback() > 0 ? (
+        {total > 0 ? (
           <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            TotalFeedback={TotalFeedback}
-            countPositiveFeedback={countPositiveFeedback}
+            good={options.good}
+            neutral={options.neutral}
+            bad={options.bad}
+            total={total}
+            positive={positive}
           />
         ) : (
           <Notification message="There is no feedback" />

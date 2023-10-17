@@ -6,7 +6,8 @@ export const FeedbackOptions = ({ options, handleFeedback }) => {
         <>
             <Wrapper>
                 {options.map(option => (
-                    <Button  key={option} onClick={handleFeedback} value={option}>
+                    <Button  key={option} 
+                    onClick={() => handleFeedback(option)} >
                         {option}
                     </Button>
                 ))}
